@@ -189,7 +189,7 @@ namespace Kitronik_Data_Logger {
     }
 
     /**
-     * Choice of what charector to seperate between each data entries.  Default not using this block is space
+     * Set the output of logged data to the USB, default baudrate is 115200
      */
     //% group=Setup
     //% weight=100 blockGap=8
@@ -201,7 +201,7 @@ namespace Kitronik_Data_Logger {
     }
 
     /**
-     * Choice of what charector to seperate between each data entries.  Default not using this block is space
+     * Choice of which pins to connect the data output and the selected baud rate
      * @param tx is the selection of pin microbit transmitting data
      * @param rx is the selection of pin microbit receiving data
      * @param rate is the selection of BaudRate speed
@@ -238,8 +238,8 @@ namespace Kitronik_Data_Logger {
     }
     
     /**
-     * Choice of what charector to seperate between each data entries.  Default not using this block is space
-     * @param seperate is the choice charector to split each entry in the log
+     * Choice whether the send or not the data entry location
+     * @param sendSelection is the choice of yes or no from the enum
      */
     //% group=Setup
     //% weight=85 blockGap=8
@@ -254,6 +254,7 @@ namespace Kitronik_Data_Logger {
 
     /**
      * Input title of saved data as a coloumn header, logged in string format. Titles will only output the first 8 charectors of the string.
+     * Maximum of 100 entries stored
      * @param title1 of string title to save eg: " "
      * @param title2 of string title to save eg: " " 
      * @param title3 of string title to save eg: " "
@@ -334,6 +335,7 @@ namespace Kitronik_Data_Logger {
 
     /**
      * Block converts a number to a string, this can be placed in the add data block.
+     * @param value is variable in number format to get converted
      */
     //% group=Entries
     //% weight=75 blockGap=8
@@ -357,6 +359,7 @@ namespace Kitronik_Data_Logger {
 
     /**
      * Send all the stored data via comms selected
+     * Maximum of 100 positions stored
      */
     //% group=Transfer
     //% weight=65 blockGap=8
@@ -388,6 +391,7 @@ namespace Kitronik_Data_Logger {
     /**
      * Send selected position the stored data via comms selected.
      * If entered position is greater than the total number of enteries, the max entry position is outputted.
+     * @param position is the location of required data to be sent
      */
     //% group=Transfer
     //% weight=60 blockGap=8
