@@ -151,22 +151,23 @@ namespace Kitronik_Data_Logger {
         return pin
     }
 
-    function checkAndAdd(addText: string, stringBuild: string): void{
+    function checkAndAdd(addText: any, stringBuild: string): void{
         if (addText){
+            let anyText = convertToText(addText)
             let build = ""
             if (stringBuild == "entry")
                 build = entryBuild
             else if (stringBuild == "title")
                 build = titleBuild
 
-            if (addText.length >= 10)
-                build = build + addText.substr(0, 10) + delimiter
+            if (anyText.length >= 10)
+                build = build + anyText.substr(0, 10) + delimiter
             else {
-                let numberSpace = 10 - addText.length
+                let numberSpace = 10 - anyText.length
                 for (let whitespace=0; whitespace < numberSpace; whitespace++){
-                    addText = addText + " "
+                    anyText = anyText + " "
                 }
-                build = build + addText + delimiter
+                build = build + anyText + delimiter
             }
             
             if (stringBuild == "entry")
@@ -255,16 +256,16 @@ namespace Kitronik_Data_Logger {
     /**
      * Input title of saved data as a coloumn header, logged in string format. Titles will only output the first 8 charectors of the string.
      * Maximum of 100 entries stored
-     * @param title1 of string title to save eg: " "
-     * @param title2 of string title to save eg: " " 
-     * @param title3 of string title to save eg: " "
-     * @param title4 of string title to save eg: " "
-     * @param title5 of string title to save eg: " "
-     * @param title6 of string title to save eg: " "
-     * @param title7 of string title to save eg: " "
-     * @param title8 of string title to save eg: " "
-     * @param title9 of string title to save eg: " "
-     * @param title10 of string title to save eg: " "
+     * @param title1 of any title to save eg: " "
+     * @param title2 of any title to save eg: " " 
+     * @param title3 of any title to save eg: " "
+     * @param title4 of any title to save eg: " "
+     * @param title5 of any title to save eg: " "
+     * @param title6 of any title to save eg: " "
+     * @param title7 of any title to save eg: " "
+     * @param title8 of any title to save eg: " "
+     * @param title9 of any title to save eg: " "
+     * @param title10 of any title to save eg: " "
      */
     //% group=Setup
     //% weight=83 blockGap=8
@@ -272,7 +273,7 @@ namespace Kitronik_Data_Logger {
     //% block="add titles to entries %title1|| %title2 %title3 %title4 %title5 %title6 %title7 %title8 %title9 %title10"
     //% duration.shadow=timePicker
     //% expandableArgumentMode="enable" inlineInputMode=inline
-    export function addTitle(title1: string, title2?: string, title3?: string, title4?: string, title5?: string, title6?: string, title7?: string, title8?: string, title9?: string, title10?: string): void{
+    export function addTitle(title1: any, title2?: any, title3?: any, title4?: any, title5?: any, title6?: any, title7?: any, title8?: any, title9?: any, title10?: any): void{
         checkAndAdd(title1, "title")
         checkAndAdd(title2, "title")
         checkAndAdd(title3, "title")
@@ -287,16 +288,16 @@ namespace Kitronik_Data_Logger {
 
     /**
      * Input data to be saved to the logger in string format.  To save numbers, convert numbers to a string.
-     * @param entry1 of string data to save eg: " "
-     * @param entry2 of string data to save eg: " "
-     * @param entry3 of string data to save eg: " "
-     * @param entry4 of string data to save eg: " "
-     * @param entry5 of string data to save eg: " "
-     * @param entry6 of string data to save eg: " "
-     * @param entry7 of string data to save eg: " "
-     * @param entry8 of string data to save eg: " "
-     * @param entry9 of string data to save eg: " "
-     * @param entry10 of string data to save eg: " "
+     * @param entry1 of any data to save eg: " "
+     * @param entry2 of any data to save eg: " "
+     * @param entry3 of any data to save eg: " "
+     * @param entry4 of any data to save eg: " "
+     * @param entry5 of any data to save eg: " "
+     * @param entry6 of any data to save eg: " "
+     * @param entry7 of any data to save eg: " "
+     * @param entry8 of any data to save eg: " "
+     * @param entry9 of any data to save eg: " "
+     * @param entry10 of any data to save eg: " "
      */
     //% group=Entries
     //% weight=80 blockGap=8
@@ -304,7 +305,7 @@ namespace Kitronik_Data_Logger {
     //% block="add data %entry1|| %entry2 %entry3 %entry4 %entry5 %entry6 %entry7 %entry8 %entry9 %entry10"
     //% duration.shadow=timePicker
     //% expandableArgumentMode="enable" inlineInputMode=inline
-    export function addData(entry1: string, entry2?: string, entry3?: string, entry4?: string, entry5?: string, entry6?: string, entry7?: string, entry8?: string, entry9?: string, entry10?: string): void{
+    export function addData(entry1: any, entry2?: any, entry3?: any, entry4?: any, entry5?: any, entry6?: any, entry7?: any, entry8?: any, entry9?: any, entry10?: any): void{
         if (comms == NONE)
             setDataForUSB()
         entryBuild = ""
@@ -331,19 +332,6 @@ namespace Kitronik_Data_Logger {
                 storedList.push(entryBuild)
             }
         }
-    }
-
-    /**
-     * Block converts a number to a string, this can be placed in the add data block.
-     * @param value is variable in number format to get converted
-     */
-    //% group=Entries
-    //% weight=75 blockGap=8
-    //% blockId="kitronik_Data_Logger_convert_to_string"
-    //% block="convert number %value for string data"
-    export function convertNumber(value: number): string {
-        let convertText = convertToText(value)
-        return convertText;
     }
 
     /**

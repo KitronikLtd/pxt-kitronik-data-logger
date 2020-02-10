@@ -15,5 +15,5 @@ Kitronik_Data_Logger.addTitle("X", "Y", "Z")
 
 //loop forever adding the data the the array
 basic.forever(function () {
-        Kitronik_Data_Logger.addData(Kitronik_Data_Logger.convertNumber(input.acceleration(Dimension.X)), Kitronik_Data_Logger.convertNumber(input.acceleration(Dimension.Y)), Kitronik_Data_Logger.convertNumber(input.acceleration(Dimension.Z)))
+        Kitronik_Data_Logger.addData(input.acceleration(Dimension.X), input.acceleration(Dimension.Y), input.acceleration(Dimension.Z))
 })
