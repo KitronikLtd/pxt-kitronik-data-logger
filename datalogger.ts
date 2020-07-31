@@ -19,7 +19,7 @@ namespace Kitronik_Data_Logger {
     export enum ListNumber{
         //% block="Send"
         Send,
-        //% block="Dont Send"
+        //% block="Don't Send"
         DontSend
     };
 
@@ -69,7 +69,7 @@ namespace Kitronik_Data_Logger {
       BaudRate1200
     };
     
-    export enum Seperator {
+    export enum Separator {
       //% block="Tab"
       tab,
       //% block="Semicolon"
@@ -195,7 +195,7 @@ namespace Kitronik_Data_Logger {
     //% group=Setup
     //% weight=100 blockGap=8
     //% blockId=kitronik_Data_Logger_output_to_usb
-    //% block="data output on USB"
+    //% block="set data output to USB"
     export function setDataForUSB() {
         comms = USB
         serial.redirectToUSB()
@@ -210,7 +210,7 @@ namespace Kitronik_Data_Logger {
     //% group=Setup
     //% weight=95 blockGap=8
     //% blockId=kitronik_Data_Logger_output_to_serial
-    //% block="data output on TX %tx |RX %rx |baud rate %rate|"
+    //% block="set data output to TX %tx|RX %rx|at baud rate %rate|"
     export function setDataForSerial(tx: PinList, rx: PinList, rate: BaudRate): void{
         comms = PIN
         let txn = sortSelection(tx)
@@ -220,32 +220,32 @@ namespace Kitronik_Data_Logger {
     }
     
     /**
-     * Choice of what charector to seperate between each data entries.  Default not using this block is space
-     * @param seperate is the choice charector to split each entry in the log
+     * Choice of which character to put between each data entry (the default is a space)
+     * @param charSelect is the choice of character to separate each entry in the log
      */
     //% group=Setup
     //% weight=90 blockGap=8
-    //% blockId=kitronik_Data_Logger_select_seperator
-    //% block="seperate entries with %charSelect"
-    export function selectSeperator(charSelect: Seperator): void{
-        if (charSelect == Seperator.tab)
+    //% blockId=kitronik_Data_Logger_select_separator
+    //% block="separate entries with %charSelect"
+    export function selectSeparator(charSelect: Separator): void{
+        if (charSelect == Separator.tab)
             delimiter = "\t"
-        else if (charSelect == Seperator.semicolon)
+        else if (charSelect == Separator.semicolon)
             delimiter = ";"
-        else if (charSelect == Seperator.comma)
+        else if (charSelect == Separator.comma)
             delimiter = ","
-        else if (charSelect == Seperator.space)
+        else if (charSelect == Separator.space)
             delimiter = " "
     }
     
     /**
-     * Choice whether the send or not the data entry location
-     * @param sendSelection is the choice of yes or no from the enum
+     * Choice whether or not to send the data entry position number in the log
+     * @param sendSelection is the choice of "Send" or "Don't Send" from the enum
      */
     //% group=Setup
     //% weight=85 blockGap=8
     //% blockId=kitronik_Data_Logger_entry_numbers
-    //% block="%sendSelection| entry locations with data "
+    //% block="%sendSelection|entry positions with data"
     export function optionSendEntryNumber(sendSelection: ListNumber): void{
         if (sendSelection == ListNumber.Send)
             entryNumber = true
@@ -253,8 +253,22 @@ namespace Kitronik_Data_Logger {
             entryNumber = false
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////                                                                                                           ////
+    ////         CLICKING THE PLUS AND MINUS ICONS WORK COMPLETELY FINE FOR THE BLOCK FUNCTIONALITY,               ////
+    ////              BUT AFTER CLICKING THE MINUS ICON, THE MAKECODE EDITOR COMPLETELY BREAKS.                    ////
+    ////                     NO BLOCKS ARE ABLE TO BE MOVED, ADDED, DELETED OR ANYTHING.                           ////
+    ////     REQUIRES THE TAB TO BE CLOSED AND A NEW WINDOW OF MAKECODE OPENED TO GET THINGS WORKING AGAIN.        ////
+    ////                                           THIS MUST BE FIXED!!!                                           ////
+    ////                 I        IT'S SOMETHING TO DO WITH THE 'checkAndAdd' FUNCTION...                          ////
+    ////                          SEEMS TO HAVE GONE AWAY BY ITSELF, BUT BE SUSPICIOUS                             ////
+    ////                                                                                                           ////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     /**
-     * Input title of saved data as a coloumn header, logged in string format. Titles will only output the first 8 charectors of the string.
+     * Input title of saved data as a column header, logged in string format. Titles will only output the first 8 characters of the string.
      * Maximum of 100 entries stored
      * @param title1 of any title to save eg: " "
      * @param title2 of any title to save eg: " " 
@@ -270,7 +284,7 @@ namespace Kitronik_Data_Logger {
     //% group=Setup
     //% weight=83 blockGap=8
     //% blockId=kitronik_Data_Logger_entry_title
-    //% block="add titles to entries %title1|| %title2 %title3 %title4 %title5 %title6 %title7 %title8 %title9 %title10"
+    //% block="add data entry headings: %title1|| %title2 %title3 %title4 %title5 %title6 %title7 %title8 %title9 %title10"
     //% expandableArgumentMode="enabled" inlineInputMode=inline
     export function addTitle(title1: string, title2?: string, title3?: string, title4?: string, title5?: string, title6?: string, title7?: string, title8?: string, title9?: string, title10?: string): void{
         checkAndAdd(title1, "title")
@@ -286,7 +300,7 @@ namespace Kitronik_Data_Logger {
     }
 
     /**
-     * Input data to be saved to the logger in string format.  To save numbers, convert numbers to a string.
+     * Input data to be saved to the logger in string format. To save numbers, convert numbers to a string.
      * @param entry1 of any data to save eg: " "
      * @param entry2 of any data to save eg: " "
      * @param entry3 of any data to save eg: " "
@@ -350,7 +364,7 @@ namespace Kitronik_Data_Logger {
     //% group=Transfer
     //% weight=65 blockGap=8
     //% blockId=kitronik_Data_Logger_send_all
-    //% block="send all data via comms"
+    //% block="transmit all data"
     export function sendAllData(): void{
         if (comms == NONE)
             setDataForUSB()
@@ -382,7 +396,7 @@ namespace Kitronik_Data_Logger {
     //% group=Transfer
     //% weight=60 blockGap=8
     //% blockId=kitronik_Data_Logger_send_selected
-    //% block="send entry %position data via comms"
+    //% block="transmit data at entry %position"
     //% position.min=1 position.max=100 position.defl=1
     export function sendSelectedData(position: number): void{
         if (comms == NONE)
