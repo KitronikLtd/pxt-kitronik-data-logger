@@ -194,7 +194,7 @@ namespace Kitronik_Data_Logger {
      */
     //% group=Setup
     //% weight=100 blockGap=8
-    //% blockId="kitronik_Data_Logger_output_to_usb"
+    //% blockId=kitronik_Data_Logger_output_to_usb
     //% block="data output on USB"
     export function setDataForUSB() {
         comms = USB
@@ -209,7 +209,7 @@ namespace Kitronik_Data_Logger {
      */
     //% group=Setup
     //% weight=95 blockGap=8
-    //% blockId="kitronik_Data_Logger_output_to_serial"
+    //% blockId=kitronik_Data_Logger_output_to_serial
     //% block="data output on TX %tx |RX %rx |baud rate %rate|"
     export function setDataForSerial(tx: PinList, rx: PinList, rate: BaudRate): void{
         comms = PIN
@@ -225,7 +225,7 @@ namespace Kitronik_Data_Logger {
      */
     //% group=Setup
     //% weight=90 blockGap=8
-    //% blockId="kitronik_Data_Logger_select_seperator"
+    //% blockId=kitronik_Data_Logger_select_seperator
     //% block="seperate entries with %charSelect"
     export function selectSeperator(charSelect: Seperator): void{
         if (charSelect == Seperator.tab)
@@ -244,7 +244,7 @@ namespace Kitronik_Data_Logger {
      */
     //% group=Setup
     //% weight=85 blockGap=8
-    //% blockId="kitronik_Data_Logger_entry_numbers"
+    //% blockId=kitronik_Data_Logger_entry_numbers
     //% block="%sendSelection| entry locations with data "
     export function optionSendEntryNumber(sendSelection: ListNumber): void{
         if (sendSelection == ListNumber.Send)
@@ -269,7 +269,7 @@ namespace Kitronik_Data_Logger {
      */
     //% group=Setup
     //% weight=83 blockGap=8
-    //% blockId="kitronik_Data_Logger_entry_title"
+    //% blockId=kitronik_Data_Logger_entry_title
     //% block="add titles to entries %title1|| %title2 %title3 %title4 %title5 %title6 %title7 %title8 %title9 %title10"
     //% duration.shadow=timePicker
     //% expandableArgumentMode="enable" inlineInputMode=inline
@@ -301,7 +301,7 @@ namespace Kitronik_Data_Logger {
      */
     //% group=Entries
     //% weight=80 blockGap=8
-    //% blockId="kitronik_Data_Logger_add"
+    //% blockId=kitronik_Data_Logger_add
     //% block="add data %entry1|| %entry2 %entry3 %entry4 %entry5 %entry6 %entry7 %entry8 %entry9 %entry10"
     //% duration.shadow=timePicker
     //% expandableArgumentMode="enable" inlineInputMode=inline
@@ -339,7 +339,7 @@ namespace Kitronik_Data_Logger {
      */
     //% group=Entries
     //% weight=70 blockGap=8
-    //% blockId="kitronik_Data_Logger_clear"
+    //% blockId=kitronik_Data_Logger_clear
     //% block="clear all data"
     export function clearData(): void{
         storedList = []
@@ -351,7 +351,7 @@ namespace Kitronik_Data_Logger {
      */
     //% group=Transfer
     //% weight=65 blockGap=8
-    //% blockId="kitronik_Data_Logger_send_all"
+    //% blockId=kitronik_Data_Logger_send_all
     //% block="send all data via comms"
     export function sendAllData(): void{
         if (comms == NONE)
@@ -383,7 +383,7 @@ namespace Kitronik_Data_Logger {
      */
     //% group=Transfer
     //% weight=60 blockGap=8
-    //% blockId="kitronik_Data_Logger_send_selected"
+    //% blockId=kitronik_Data_Logger_send_selected
     //% block="send entry %position data via comms"
     //% position.min=1 position.max=100 position.defl=1
     export function sendSelectedData(position: number): void{
