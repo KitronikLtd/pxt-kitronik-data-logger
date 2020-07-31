@@ -271,9 +271,8 @@ namespace Kitronik_Data_Logger {
     //% weight=83 blockGap=8
     //% blockId=kitronik_Data_Logger_entry_title
     //% block="add titles to entries %title1|| %title2 %title3 %title4 %title5 %title6 %title7 %title8 %title9 %title10"
-    //% duration.shadow=timePicker
-    //% expandableArgumentMode="enable" inlineInputMode=inline
-    export function addTitle(title1: any, title2?: any, title3?: any, title4?: any, title5?: any, title6?: any, title7?: any, title8?: any, title9?: any, title10?: any): void{
+    //% expandableArgumentMode="enabled" inlineInputMode=inline
+    export function addTitle(title1: string, title2?: string, title3?: string, title4?: string, title5?: string, title6?: string, title7?: string, title8?: string, title9?: string, title10?: string): void{
         checkAndAdd(title1, "title")
         checkAndAdd(title2, "title")
         checkAndAdd(title3, "title")
@@ -303,9 +302,8 @@ namespace Kitronik_Data_Logger {
     //% weight=80 blockGap=8
     //% blockId=kitronik_Data_Logger_add
     //% block="add data %entry1|| %entry2 %entry3 %entry4 %entry5 %entry6 %entry7 %entry8 %entry9 %entry10"
-    //% duration.shadow=timePicker
-    //% expandableArgumentMode="enable" inlineInputMode=inline
-    export function addData(entry1: any, entry2?: any, entry3?: any, entry4?: any, entry5?: any, entry6?: any, entry7?: any, entry8?: any, entry9?: any, entry10?: any): void{
+    //% expandableArgumentMode="enabled" inlineInputMode=inline
+    export function addData(entry1: string, entry2?: string, entry3?: string, entry4?: string, entry5?: string, entry6?: string, entry7?: string, entry8?: string, entry9?: string, entry10?: string): void{
         if (comms == NONE)
             setDataForUSB()
         entryBuild = ""

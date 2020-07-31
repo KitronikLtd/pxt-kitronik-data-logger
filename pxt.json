@@ -1,6 +1,6 @@
 {
     "name": "pxt-kitronik-data-logger",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Blocks to simplify using data logging in PXT",
     "license": "MIT",
     "dependencies": {
